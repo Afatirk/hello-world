@@ -1,0 +1,136 @@
+import java.util.*;
+public class bnkngsystem
+{
+    public static void main(String args[])
+    {    
+        bank ob=new bank();
+        while(true)
+        {
+            System.out.println("Welcome to the banking application");
+            System.out.println("Enter 1 to create a new account");
+            System.out.println("Enter 2 to deposit the in your account");
+            System.out.println("Enter 3 to withdraw amount from your account");
+            System.out.println("Enter 4 to view balance of your account");
+            System.out.println("Enter your choice");
+            int x;
+            Scanner s=new Scanner(System.in);
+            x=s.nextInt();
+            
+            switch(x)
+            {
+                    case 1:ob.new_account();
+                            break;
+                    case 2:ob.deposit();
+                            break;
+                    case 3:ob.withdraw();
+                            break;
+                    case 4:ob.balance();
+                            break;
+                    default:System.out.println("Wrong Choice");
+                            break;
+            }
+            System.out.println("Want to stop?  y/n");
+            if((s.next())=="n")
+            break;
+            
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+        }
+    }
+}
+
+class bank
+{
+    int age;
+    String name;
+    float amt;
+    int z=0375,n,pin;
+    Scanner s=new Scanner(System.in);
+    
+    /*bank()
+    {
+        age=0;
+        pass="";
+        name="";
+        amt= 0;
+    }*/
+    public void new_account()
+    {
+        System.out.println("To create an account enter the following details:");
+        System.out.println("Name:");
+        name=s.nextLine();
+        System.out.println("Age:");
+        age=s.nextInt();
+        System.out.println("Initial amount deposited:");
+        amt=s.nextFloat();
+        System.out.println("Enter any Four digit pin:");
+        pin=s.nextInt();
+        n=z+220;
+        System.out.println("Congratulations, the account is created");
+        balance();
+        System.out.println("Password: "+pin);
+        return;
+    }  
+    public void deposit()
+    {
+        System.out.println("Enter account number");
+        int temp=s.nextInt();
+        System.out.println("Enter pin");
+        
+        if(temp==n&&(s.nextInt())==pin)
+        {
+            System.out.println("Login successful");
+            System.out.println("Enter amount to deposit");
+            amt=amt+(s.nextFloat());
+            System.out.println("Amount updated");
+            balance();
+            return;
+        }
+        else
+        {
+            System.out.println("The entered details areincorrect");
+        }
+        return;
+    }
+    public void withdraw()
+    {
+        System.out.println("Enter account number:");
+        if(n==s.nextLong())
+        {
+            System.out.println("Enter pin: ");
+            if(pin==s.nextInt())
+            {
+                System.out.println("Login successful");
+                
+                System.out.println("Enter the amount you want to withdraw");
+                float p=s.nextFloat();
+                if(p>=amt)
+                {
+                    System.out.println("Insufficient balance");
+                    return;
+                }
+                else
+                {
+                amt=amt-p;
+                System.out.println("Details updated, the amount is "+amt);
+                }
+            }
+        }
+        else
+        {
+            System.out.println("The entered details are incorrect, Try Again");
+        }
+        return;
+    }
+    public void balance()
+    {
+        System.out.println("The details of the Account is: ");
+        System.out.println("Name: "+name);
+        System.out.println("Account number"+n);
+        System.out.println("age "+age);
+        System.out.println("Account balance"+amt);
+        return;
+    }
+}
